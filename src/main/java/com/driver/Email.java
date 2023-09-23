@@ -11,11 +11,20 @@ public class Email {
     }
 
     public String getEmailId() {
-        return emailId;
+        return this.emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPassword() {
-        return password;
+
+        return this.password;
     }
 
     public void changePassword(String oldPassword, String newPassword){
@@ -25,5 +34,41 @@ public class Email {
         // 3. It contains at least one lowercase letter
         // 4. It contains at least one digit
         // 5. It contains at least one special character. Any character apart from alphabets and digits is a special character
+        if(oldPassword.equals(this.getPassword()) && newPassword.length()>=8){
+
+            if(check(newPassword)==true){
+                this.password = newPassword;
+//                System.out.print("New password added");
+            }
+        }
+
+    }
+
+    public boolean check (String newPass){
+
+        int Up =0 , Lo =0 , Di =0 , Sp = 0;
+
+        for(int i =0;i<newPass.length();i++){
+            char ch = newPass.charAt(i);
+
+            if(ch>='A' && ch<='Z'){
+                Up++;
+            }
+            else if(ch>='a' && ch<='z'){
+                Lo++;
+            }
+            else if(ch>='0' && ch<='9'){
+                Di++;
+            }
+            else{
+                Sp++;
+            }
+        }
+
+        if(Up>=1 && Lo>=1 && Di>=1 && Sp>=1){
+            return true;
+        }
+
+        return false;
     }
 }
